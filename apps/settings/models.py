@@ -21,3 +21,14 @@ class Setting(models.Model):
     class Meta:
         verbose_name = "Настройка"
         verbose_name_plural = "Настройки"
+
+class AboutUs(models.Model):
+    title = models.CharField(max_length=100, verbose_name="Про нас")
+    description = models.TextField(verbose_name="Описание")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "Про нас"
+        verbose_name_plural = "Про нас"

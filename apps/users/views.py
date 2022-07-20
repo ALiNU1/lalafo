@@ -31,7 +31,7 @@ def register(request):
     context = {
         'setting' : setting,
     }
-    return render(request, 'users/register.html', context)
+    return render(request, 'users/login.html', context)
 
 def user_login(request):
     setting = Setting.objects.latest('id')

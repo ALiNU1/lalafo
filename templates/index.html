@@ -26,7 +26,7 @@
                                 <h5 class="sub-title">{{ post.category }}</h5>
                                 <h5 class="main-title">{{ post.title |truncatewords:4 }}</h5>
                                 <p>{{ post.description | truncatewords:25 }}</p>
-                                <a href="shop-list.html" class="btn btn-primary btn-hover-dark">Посмотреть объявление</a>
+                                <a href="{% url 'post_detail' post.id %}" class="btn btn-primary btn-hover-dark">Посмотреть объявление</a>
                             </div>
                             <img class="main-title" style="width: 400px; height:500px; float: right;" src="{{post.post_image.url}}" alt="">
                         </div>
@@ -52,7 +52,8 @@
         <!-- Section Title Start -->
         <div class="section-title text-center">
             <h2 class="title">Все товары</h2>
-            <p>Consequat magna, massa vel suspendisse morbi aliquam faucibus <br> ligula ante ipsum ac nulla.</p>
+            <p>Вы можете создать большую шишку или приостановить любую болезнь горла
+                и радара перед ним нет.</p>
         </div>
         <!-- Section Title End -->
 
@@ -143,8 +144,8 @@
                                 <img src="{% static 'assets/images/icon/icon1.png' %}" alt="">
                             </div>
                             <div class="feature-content">
-                                <h3 class="title">Free Shipping Worldwide</h3>
-                                <p>Mirum est notare quam littera gothica, quam nunc putamus parum</p>
+                                <h3 class="title"> БЕСПЛАТНАЯ ДОСТАВКА ПО ВСЕМУ МИРУ</h3>
+                                <p>Замечательно отметить, как мало готического письма мы думаем сейчас</p>
                             </div>
                         </div>
                         <!-- Single Features Item End -->
@@ -156,8 +157,8 @@
                                 <img src="{% static 'assets/images/icon/icon2.png' %}" alt="">
                             </div>
                             <div class="feature-content">
-                                <h3 class="title">Money Back Guarantee</h3>
-                                <p>Mirum est notare quam littera gothica, quam nunc putamus parum</p>
+                                <h3 class="title">Гарантия возврата денег</h3>
+                                <p>Замечательно отметить, как мало готического письма мы думаем сейчас</p>
                             </div>
                         </div>
                         <!-- Single Features Item End -->
@@ -169,8 +170,8 @@
                                 <img src="assets/images/icon/icon3.png" alt="">
                             </div>
                             <div class="feature-content">
-                                <h3 class="title">online support 24/7</h3>
-                                <p>Mirum est notare quam littera gothica, quam nunc putamus parum</p>
+                                <h3 class="title"> Онлайн поддержка 24/7</h3>
+                                <p>Замечательно отметить, как мало готического письма мы думаем сейчас</p>
                             </div>
                         </div>
                         <!-- Single Features Item End -->
@@ -193,8 +194,8 @@
                 <div class="col-lg-8">
                     <div class="about-text">
                         <div class="about-text-wrapper">
-                            <h4 class="title">About us</h4>
-                            <p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur. <br><br> Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis distinctio sunt exercitationem. <a href="index.html#">Learn More</a></p>
+                            <h4 class="title">{{ about.title }}</h4>
+                            <p>{{ about.description }}</p>
                         </div>
                         <img src="assets/images/about-text.png" alt="">
                     </div>
@@ -250,9 +251,9 @@
             <!-- Product Tabs Start -->
             <div class="product-tabs">
                 <ul class="nav justify-content-center">
-                    <li class="nav-item"><a class="active" data-bs-toggle="tab" href="index.html#tab1">Best Seller</a></li>
-                    <li class="nav-item"><a data-bs-toggle="tab" href="index.html#tab2">Trending</a></li>
-                    <li class="nav-item"><a data-bs-toggle="tab" href="index.html#tab3">Top Sale</a></li>
+                    <li class="nav-item"><a class="active" data-bs-toggle="tab" href="index.html#tab1">Бестселлер</a></li>
+                    <li class="nav-item"><a data-bs-toggle="tab" href="index.html#tab2">В тренде</a></li>
+                    <li class="nav-item"><a data-bs-toggle="tab" href="index.html#tab3">Топ скидок</a></li>
                 </ul>
 
                 <div class="tab-content" id="myTabContent">
@@ -959,8 +960,8 @@
         <div class="container">
             <!-- Section Title Start -->
             <div class="section-title text-center">
-                <h2 class="title">From Our Blog </h2>
-                <p>Consequat magna, massa vel suspendisse morbi aliquam faucibus <br> ligula ante ipsum ac nulla.</p>
+                <h2 class="title">Из нашего блога </h2>
+                <p>Вы можете создать большую массу или приостановить любую болезнь в вашем горле.</p>
             </div>
             <!-- Section Title End -->
 
