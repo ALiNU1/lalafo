@@ -32,14 +32,12 @@
 
                     <!-- Header Action Start -->
                     <div class="header-actions">
-                        <a href="compare.html" class="header-action-btn">
-                            <i class="icon-sliders"></i>
-                            <span class="action-num">3</span>
-                        </a>
-                        <a href="" class="header-action-btn">
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'user_favorites' user.id %}" class="header-action-btn">
                             <i class="icon-heart"></i>
                             <span class="action-num">2</span>
                         </a>
+                        {% endif %}
                         <div class="dropdown">
                             <a href="index.html#" class="header-action-btn" role="button" data-bs-toggle="dropdown">
                                 <i class="icon-shopping-bag2"></i>
@@ -211,7 +209,7 @@
                                 </li>
                             </ul>
                         </li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="{% url 'contact' %}">Контакты</a></li>
                         {% if user.is_authenticated %}
                         <li class="active">
                             <li><a href="{% url 'post_create' %}">Подать объявление</a></li>
@@ -352,7 +350,9 @@
 <div class="off-canvas-box">
     <div class="canvas-action">
         <a class="action" href="index.html#"><i class="icon-sliders"></i> Compare <span class="action-num">(0)</span></a>
+        {% if user.is_authenticated %}
         <a class="action" href="{% url 'user_favorites' user.id %}"><i class="icon-heart"></i> Wishlist <span class="action-num">(0)</span></a>
+        {% endif %}
     </div>
     <div class="canvas-close-bar">
         <span>Menu</span>

@@ -23,12 +23,45 @@ class Setting(models.Model):
         verbose_name_plural = "Настройки"
 
 class AboutUs(models.Model):
-    title = models.CharField(max_length=100, verbose_name="Про нас")
+    image = models.ImageField(upload_to = 'about_us/', verbose_name="Картинка о нас")
     description = models.TextField(verbose_name="Описание")
 
     def __str__(self):
-        return self.title
+        return self.description
 
     class Meta:
-        verbose_name = "Про нас"
-        verbose_name_plural = "Про нас"
+        verbose_name = "О нас"
+        verbose_name_plural = "О нас"
+
+class Contact(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Имя")
+    email = models.EmailField(max_length=100, verbose_name="Почта")
+    title = models.CharField(max_length=100, verbose_name="Заголовок")
+    phone = models.CharField(max_length=100, verbose_name="Телефонный номер")
+    problem = models.TextField(verbose_name="Проблема")
+    CHOICE_STATUS = (
+        ('В ожидании', 'В ожидании'), 
+        ('Решена', 'Решена'),
+        ('Не решена', 'Не решена'),
+    )
+    status = models.CharField(choices=CHOICE_STATUS, max_length=30, verbose_name="Статус обращения", default="В ожидании")
+
+    def __str__(self):
+        return f"{self.name} {self.title[0:30]}... {self.status}"
+
+    class Meta:
+        verbose_name = "Контакт"
+        verbose_name_plural = "Контакты"
+
+class Blog(models.Model):
+    title = models.CharField(max_length=255, verbose_name="Заголовок",  blank = True, null = True)
+    description = models.TextField(verbose_name="Описание",  blank = True, null = True)
+    image = models.ImageField(upload_to = "blog_image/",  blank = True, null = True)
+    created = models.DateTimeField(auto_now_add=True,  blank = True, null = True)
+
+    def __str__(self):
+        return f"{self.title}, {self.description[0:20]}..."
+
+    class Meta:
+        verbose_name = "Блог"
+        verbose_name_plural = "Блог"
