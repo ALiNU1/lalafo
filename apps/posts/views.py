@@ -1,6 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
-from apps.posts.models import Post, PostImage, FavoritePost
+from apps.posts.models import Post, PostImage, FavoritePost, PostComment
 from apps.settings.models import Setting
 from apps.categories.models import Category
 from django.db.models import Q
@@ -10,6 +10,7 @@ def post_detail(request, id):
     post = Post.objects.get(id = id)
     setting = Setting.objects.latest('id')
     random_posts = Post.objects.all().order_by('?')
+    comments = PostComment.objects.all()
     if request.method == "POST":
         if 'valid' in request.POST:
             post = Post.objects.get(id = id)
@@ -29,16 +30,25 @@ def post_detail(request, id):
             except:
                 FavoritePost.objects.create(user = request.user, post = post)
 
+        if 'comment' in request.POST:
+            try:
+                text = request.POST.get('text')
+                comment = PostComment.objects.create(user = request.user, post = post, text = text)
+                return redirect('post_detail', post.id)
+            except:
+                return redirect('post_detail', post.id)
 
     context = {
-        'setting' : setting,
         'post' : post,
+        'setting' : setting,
         'random_posts' : random_posts,
+        'comments' : comments,
+        'comment' : comment,
     }
     return render(request, 'posts/shop-single.html', context)
     
 def post_detail_slug(request, slug):
-    post = Post.objects.get(slug = slug)
+    # post = Post.objects.get(slug = slug)
     setting = Setting.objects.latest('id')
     random_posts = Post.objects.all().order_by('?')
     if request.method == "POST":

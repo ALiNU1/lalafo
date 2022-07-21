@@ -1,5 +1,5 @@
 from django.contrib import admin
-from apps.posts.models import Post, PostImage, FavoritePost
+from apps.posts.models import Post, PostImage, FavoritePost, PostComment
 
 # Register your models here.
 class ProductImageAdmin(admin.TabularInline):
@@ -12,3 +12,4 @@ class ProductAdmin(admin.ModelAdmin):
 
 admin.site.register(Post, ProductAdmin)
 admin.site.register(FavoritePost)
+admin.site.register(PostComment)

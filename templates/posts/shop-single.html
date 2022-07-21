@@ -326,51 +326,25 @@
                                     <div class="comment-author">
                                         <img src="assets/images/author/author-1.png" alt="">
                                     </div>
+                                    {% for comment in post.comment_post.all %}
                                     <div class="comment-content">
                                         <div class="author-name-rating">
-                                            <h6 class="name">Rosie Silva</h6>
+                                            <h6 class="name">{{comment.user}}</h6>
                                             <div class="review-star">
                                                 <div class="star" style="width: 80%;"></div>
                                             </div>
                                         </div>
-                                        <span class="date">11/20/2020</span>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse deleniti itaque velit explicabo at eum incidunt vel reprehenderit maxime eos facere ut pariatur voluptas aut, porro quia molestias sequi cupiditate!</p>
+                                        <span class="date">{{ comment.created }}</span>
+                                        <p>{{ comment.text }}</p>
                                     </div>
                                 </div>
+                                {% endfor %}
                                 <!-- Single Comment Start  -->
                                 <!-- Single Comment Start  -->
                                 <div class="single-comment">
                                     <div class="comment-author">
                                         <img src="assets/images/author/author-2.png" alt="">
                                     </div>
-                                    <div class="comment-content">
-                                        <div class="author-name-rating">
-                                            <h6 class="name">Rosie Silva</h6>
-                                            <div class="review-star">
-                                                <div class="star" style="width: 80%;"></div>
-                                            </div>
-                                        </div>
-                                        <span class="date">11/20/2020</span>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse deleniti itaque velit explicabo at eum incidunt vel reprehenderit maxime eos facere ut pariatur voluptas aut, porro quia molestias sequi cupiditate!</p>
-                                    </div>
-                                </div>
-                                <!-- Single Comment Start  -->
-                                <!-- Single Comment Start  -->
-                                <div class="single-comment">
-                                    <div class="comment-author">
-                                        <img src="assets/images/author/author-3.png" alt="">
-                                    </div>
-                                    <div class="comment-content">
-                                        <div class="author-name-rating">
-                                            <h6 class="name">Rosie Silva</h6>
-                                            <div class="review-star">
-                                                <div class="star" style="width: 80%;"></div>
-                                            </div>
-                                        </div>
-                                        <span class="date">11/20/2020</span>
-                                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse deleniti itaque velit explicabo at eum incidunt vel reprehenderit maxime eos facere ut pariatur voluptas aut, porro quia molestias sequi cupiditate!</p>
-                                    </div>
-                                </div>
                                 <!-- Single Comment Start  -->
                             </div>
                             <div class="review-form">
@@ -415,6 +389,7 @@
                                             </div>
                                         </div>
                                         <div class="col-lg-12">
+                                            {% csrf_token %}
                                             <div class="single-form">
                                                 <button class="btn btn-primary btn-hover-dark">Post Comment</button>
                                             </div>
