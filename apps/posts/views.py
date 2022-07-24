@@ -22,33 +22,16 @@ def post_detail(request, id):
                 post.valid = True
                 post.save()
                 return redirect('index')
-        
-        if 'like' in request.POST:
-            try:
-                like = FavoritePost.objects.get(user=request.user, post = post)
-                like.delete()
-            except:
-                FavoritePost.objects.create(user = request.user, post = post)
-
-        if 'comment' in request.POST:
-            try:
-                text = request.POST.get('text')
-                comment = PostComment.objects.create(user = request.user, post = post, text = text)
-                return redirect('post_detail', post.id)
-            except:
-                return redirect('post_detail', post.id)
-
     context = {
         'post' : post,
         'setting' : setting,
         'random_posts' : random_posts,
         'comments' : comments,
-        'comment' : comment,
     }
     return render(request, 'posts/shop-single.html', context)
     
 def post_detail_slug(request, slug):
-    # post = Post.objects.get(slug = slug)
+    post = Post.objects.get(slug = slug)
     setting = Setting.objects.latest('id')
     random_posts = Post.objects.all().order_by('?')
     if request.method == "POST":
@@ -62,13 +45,12 @@ def post_detail_slug(request, slug):
                 post.valid = True
                 post.save()
                 return redirect('index')
-        if request.method == "POST":
-            if 'like' in request.POST:
-                try:
-                    like = FavoritePost.objects.get(user=request.user, post = post)
-                    like.delete()
-                except:
-                    FavoritePost.objects.create(user = request.user, post = post)
+        if 'like' in request.POST:
+            try:
+                like = FavoritePost.objects.get(user=request.user, post = post)
+                like.delete()
+            except:
+                FavoritePost.objects.create(user = request.user, post = post)
     context = {
         'setting' : setting,
         'post' : post,
@@ -158,4 +140,3 @@ def post_search(request):
         'posts' : posts
     }
     return render(request, 'posts/search.html', context)
-    
